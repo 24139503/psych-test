@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<link rel="stylesheet" href="style.css">
+
+<head>
+  <meta charset="UTF-8">
+  <div class="container">
+    <h1>心理測驗</h1>
+  
+    <div class="form-section">
+      <p>1. 面對壓力你會怎麼做？</p>
+      <label><input type="radio" name="q1" value="A"> 找朋友說話</label>
+      <label><input type="radio" name="q1" value="B"> 自己靜靜思考</label>
+    </div>
+  
+    <div class="form-section">
+      <p>2. 遇到新環境你會？</p>
+      <label><input type="radio" name="q2" value="A"> 積極嘗試新事物</label>
+      <label><input type="radio" name="q2" value="B"> 觀察一陣子再行動</label>
+    </div>
+  
+    <a href="#" onclick="getResult()">🔍 看結果</a>
+  </div>
+  
+
+  <script>
+    function getResult() {
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+
+      if (!q1 || !q2) {
+        alert("請回答所有題目！");
+        return;
+      }
+
+      // 簡單邏輯跳轉
+      if (q1 === "A" && q2 === "A") {
+        window.location.href = "result1.html";
+      } else if (q1 === "B" && q2 === "B") {
+        window.location.href = "result2.html";
+      } else {
+        window.location.href = "result3.html";
+      }
+    }
+  </script>
+</body>
+</html>
