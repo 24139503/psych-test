@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>心理測驗表單</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
-    h2 { color: #333; }
-    button { margin-top: 20px; padding: 10px 20px; }
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #333;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <img src="logo.png" alt="Logo" style="max-width: 150px;"><br><br>
 
-  <h2>你是什麼類型的人？</h2>
+  <h2>心理測驗：你是哪種類型的人？</h2>
 
-  <p>1. 面對壓力你會怎麼做？</p>
-  <label><input type="radio" name="q1" value="A"> 找朋友說話</label><br>
-  <label><input type="radio" name="q1" value="B"> 自己靜靜思考</label><br>
+  <div class="question">
+    <p>1. 面對壓力你會怎麼做？</p>
+    <label><input type="radio" name="q1" value="A"> 找朋友說話</label><br>
+    <label><input type="radio" name="q1" value="B"> 自己靜靜思考</label>
+  </div>
 
-  <p>2. 遇到新環境你會？</p>
-  <label><input type="radio" name="q2" value="A"> 積極嘗試</label><br>
-  <label><input type="radio" name="q2" value="B"> 先觀察一陣子</label><br>
+  <div class="question">
+    <p>2. 遇到新環境你會？</p>
+    <label><input type="radio" name="q2" value="A"> 積極嘗試</label><br>
+    <label><input type="radio" name="q2" value="B"> 先觀察一陣子</label>
+  </div>
 
-  <button onclick="getResult()">看結果</button>
+  <button onclick="getResult()">看測驗結果</button>
 
   <script>
     function getResult() {
@@ -34,14 +54,22 @@
         return;
       }
 
-      // 簡單邏輯跳轉
+      // 依組合跳轉對應結果頁（共 4 種組合，補足至 6 頁可重複用）
+      let resultPage = "";
+
       if (q1 === "A" && q2 === "A") {
-        window.location.href = "result1.html";
+        resultPage = "result1.html";
+      } else if (q1 === "A" && q2 === "B") {
+        resultPage = "result2.html";
+      } else if (q1 === "B" && q2 === "A") {
+        resultPage = "result3.html";
       } else if (q1 === "B" && q2 === "B") {
-        window.location.href = "result2.html";
+        resultPage = "result4.html";
       } else {
-        window.location.href = "result3.html";
+        resultPage = "result6.html"; // 安全 fallback
       }
+
+      window.location.href = resultPage;
     }
   </script>
 </body>
